@@ -2,6 +2,7 @@
 const route = useRoute();
 const router = useRouter();
 const { data: auth } = useAuth();
+const { getMembershipStatus, membershipData } = useCurrentUser();
 
 const {
   data: book,
@@ -14,6 +15,7 @@ const {
 
 const successBorrowPopup = ref(false);
 const showLoginPopup = ref(false);
+const isLoading = ref(false);
 
 if (error.value) {
   throw createError({
@@ -32,27 +34,27 @@ const borrowBooks = async () => {
 
     return;
   }
-  //   try {
-  //     isLoading.value = true;
 
-  //     const data = await useBaseAPI("/api/loan/create", {
-  //       method: "POST",
-  //        body: {
-  //         nim: search.value,
-  //         phone: selectedProvince.value,
-  //         prodi: ''
-  //       },
-  //     });
+  try {
+    isLoading.value = true;
 
-  //     if (data.success) {
-  //       successBorrowPopup.value = true;
-  //     }
-  //   } catch (error) {
-  //     console.error("Gagal mendapatkan buku: ", error);
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  successBorrowPopup.value = true;
+    const data = await useBaseAPI("/api/loan/create", {
+      method: "POST",
+      body: {
+        bookId: route.params.id,
+        memberId: membershipData.value._id,
+        notes: `Buku dipinjam pada ${new Date().toLocaleDateString("id-ID")}`,
+      },
+    });
+
+    if (data.success) {
+      successBorrowPopup.value = true;
+    }
+  } catch (error) {
+    console.error("Gagal mendapatkan buku: ", error);
+  } finally {
+    isLoading.value = false;
+  }
 };
 
 const onClosePopup = () => {

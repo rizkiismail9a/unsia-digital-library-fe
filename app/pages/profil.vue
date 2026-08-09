@@ -3,14 +3,13 @@ import { PhSignOut } from "@phosphor-icons/vue";
 
 const auth = useAuth();
 const route = useRoute();
-const { fetchUser, authedUser } = useCurrentUser();
+const { fetchUser, authedUser, membershipData, isMember, getMembershipStatus } =
+  useCurrentUser();
 
 definePageMeta({
   middleware: "sidebase-auth",
 });
 
-const isMember = ref(false);
-const memberId = ref("");
 const loading = ref(false);
 
 const firstLetter = computed(() => {
@@ -20,19 +19,6 @@ const firstLetter = computed(() => {
 
   return "0";
 });
-
-const getMembershipStatus = async () => {
-  try {
-    const data = await useBaseAPI("/api/member/my-membership");
-
-    if (data.success) {
-      isMember.value = data.data.email === authedUser.value.email;
-      memberId.value = data.data._id;
-    }
-  } catch (error) {
-    console.error("Gagal mendapatkan data membership: ", error);
-  }
-};
 
 const logout = async () => {
   try {
@@ -57,7 +43,8 @@ await getMembershipStatus();
         <h2>{{ authedUser.name }}</h2>
         <p v-if="!isMember" style="color: var(--clr-muted); font-size: 0.9rem">
           Kamu belum menjadi anggota!
-          <span
+          <NuxtLink
+            to="/registrasi/member"
             style="
               text-decoration: underline;
               font-weight: 700;
@@ -66,10 +53,10 @@ await getMembershipStatus();
             "
           >
             Daftar Sekarang!
-          </span>
+          </NuxtLink>
         </p>
         <p v-else style="color: var(--clr-muted); font-size: 0.9rem">
-          ID Anggota: {{ memberId }}
+          ID Anggota: {{ membershipData._id }}
         </p>
       </div>
 

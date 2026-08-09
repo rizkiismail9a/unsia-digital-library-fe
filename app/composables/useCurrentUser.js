@@ -3,6 +3,8 @@ export const useCurrentUser = () => {
 
   const authedUser = useState("current-user", () => null);
   const pending = useState("current-user-pending", () => false);
+  const membershipData = useState("current-membership-data", () => null);
+  const isMember = useState("current-member-status", () => false);
 
   const fetchUser = async () => {
     if (!auth.value?.user?.accessToken) return;
@@ -35,9 +37,32 @@ export const useCurrentUser = () => {
     }
   };
 
+  const getMembershipStatus = async () => {
+    if (!auth.value?.user?.accessToken) return;
+
+    try {
+      const data = await $fetch("/api/member/my-membership", {
+        baseURL: useRuntimeConfig().public.apiBaseUrl,
+        headers: {
+          Authorization: `Bearer ${auth.value.user.accessToken}`,
+        },
+      });
+
+      if (data.success) {
+        isMember.value = data.data.email === authedUser.value.email;
+        membershipData.value = data.data;
+      }
+    } catch (error) {
+      console.error("Gagal mendapatkan data membership: ", error);
+    }
+  };
+
   return {
     authedUser,
     pending,
+    isMember,
+    membershipData,
     fetchUser,
+    getMembershipStatus,
   };
 };
