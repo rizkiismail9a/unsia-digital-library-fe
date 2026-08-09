@@ -40,7 +40,7 @@ await getMembershipStatus();
     <div class="card profile-header">
       <div class="avatar">{{ firstLetter }}</div>
       <div class="identity">
-        <h2>{{ authedUser.name }}</h2>
+        <h1>{{ authedUser.name }}</h1>
         <p v-if="!isMember" style="color: var(--clr-muted); font-size: 0.9rem">
           Kamu belum menjadi anggota!
           <NuxtLink
@@ -63,6 +63,8 @@ await getMembershipStatus();
       <PhSignOut size="24" color="red" @click="logout" />
       <LazyLoading v-if="loading" />
     </div>
+
+    <UserLoans />
   </div>
 </template>
 

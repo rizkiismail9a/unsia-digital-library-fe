@@ -54,6 +54,10 @@ const createMembership = async () => {
       <h1 style="margin-bottom: 1.5rem; text-align: center">
         Daftar Keanggotaan
       </h1>
+      <p style="text-align: center; color: var(--clr-text)">
+        Ayo, daftarkan diri menjadi anggota untuk meminjam koleksi buku dari
+        HappyLibrary!
+      </p>
       <Form
         v-slot="{ errors, meta }"
         class="login-form"

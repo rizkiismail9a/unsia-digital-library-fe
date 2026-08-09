@@ -83,7 +83,6 @@ header {
         &:hover,
         &.router-link-exact-active.router-link-active {
           color: var(--clr-teal);
-          font-weight: 600;
         }
       }
     }
@@ -137,7 +136,6 @@ header {
         &:hover,
         &.router-link-exact-active.router-link-active {
           color: var(--clr-teal);
-          font-weight: 600;
         }
       }
     }

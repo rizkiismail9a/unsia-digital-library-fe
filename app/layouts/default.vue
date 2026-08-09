@@ -11,6 +11,7 @@ import Navbar from "~/components/Navbar.vue";
         <slot />
       </div>
     </main>
+    <Footer />
   </Html>
 </template>
 
@@ -42,6 +43,7 @@ body {
   background-color: var(--clr-bg);
   color: var(--clr-text);
   line-height: 1.6;
+  min-height: 100svh;
 }
 
 body::-webkit-scrollbar {

@@ -3,6 +3,7 @@ const route = useRoute();
 const router = useRouter();
 const { data: auth } = useAuth();
 const { getMembershipStatus, membershipData } = useCurrentUser();
+const { showToast } = useToast();
 
 const {
   data: book,
@@ -38,6 +39,12 @@ const borrowBooks = async () => {
   try {
     isLoading.value = true;
 
+    if (!membershipData.value) {
+      router.push("/registrasi/member");
+
+      return;
+    }
+
     const data = await useBaseAPI("/api/loan/create", {
       method: "POST",
       body: {
@@ -52,6 +59,10 @@ const borrowBooks = async () => {
     }
   } catch (error) {
     console.error("Gagal mendapatkan buku: ", error);
+
+    if (error.response._data?.message) {
+      showToast(error.response._data.message, "error");
+    }
   } finally {
     isLoading.value = false;
   }
@@ -61,6 +72,8 @@ const onClosePopup = () => {
   successBorrowPopup.value = false;
   refresh();
 };
+
+getMembershipStatus();
 </script>
 
 <template>
