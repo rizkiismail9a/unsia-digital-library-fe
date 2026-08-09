@@ -1,4 +1,7 @@
 <script setup>
+import InfoState from "~/components/InfoState.vue";
+import InputSearch from "~/components/InputSearch.vue";
+
 const router = useRouter();
 
 const searchQuery = ref("");
@@ -38,9 +41,16 @@ getBooksList();
   <div id="katalog-buku">
     <h1>Katalog Buku</h1>
 
-    <Input v-model="searchQuery" />
+    <InputSearch v-model="searchQuery" />
 
-    <div class="books-grid">
+    <div
+      :class="[
+        {
+          flex: filteredBooks.length <= 0,
+          'books-grid': filteredBooks.length > 0,
+        },
+      ]"
+    >
       <template v-if="!isLoading">
         <div
           v-for="book in filteredBooks"
@@ -58,6 +68,13 @@ getBooksList();
           <p class="book-author">{{ book.author }}</p>
           <p class="book-author">{{ book.genre }}</p>
         </div>
+
+        <InfoState
+          v-if="filteredBooks.length === 0"
+          img="/illustration/empty-box.svg"
+          message="Buku yang kamu cari tidak ketemu"
+          sub-message="Coba ganti kata kunci pencarian"
+        />
       </template>
 
       <template v-else>
@@ -83,6 +100,12 @@ getBooksList();
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
+
+    &.flex {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
 
     .card {
       background: var(--clr-card);
@@ -140,7 +163,7 @@ getBooksList();
     .card-skeleton {
       border-radius: 12px;
       width: 100%;
-      height: 400px;
+      height: 350px;
     }
   }
 }

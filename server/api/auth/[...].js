@@ -51,6 +51,7 @@ export default NuxtAuthHandler({
         }
 
         const message = data?.message || "Email atau password salah";
+
         throw new Error(message);
       },
     }),
@@ -84,6 +85,6 @@ export default NuxtAuthHandler({
   },
 
   pages: {
-    signIn: "/login",
+    signIn: "/masuk",
   },
 });

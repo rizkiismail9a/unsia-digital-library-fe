@@ -1,5 +1,7 @@
 <script setup>
 const route = useRoute();
+const router = useRouter();
+const { data: auth } = useAuth();
 
 const {
   data: book,
@@ -10,7 +12,8 @@ const {
   return response.data;
 });
 
-const openPopup = ref(false);
+const successBorrowPopup = ref(false);
+const showLoginPopup = ref(false);
 
 if (error.value) {
   throw createError({
@@ -24,6 +27,11 @@ if (error.value) {
 }
 
 const borrowBooks = async () => {
+  if (!auth.value) {
+    showLoginPopup.value = true;
+
+    return;
+  }
   //   try {
   //     isLoading.value = true;
 
@@ -37,18 +45,18 @@ const borrowBooks = async () => {
   //     });
 
   //     if (data.success) {
-  //       openPopup.value = true;
+  //       successBorrowPopup.value = true;
   //     }
   //   } catch (error) {
   //     console.error("Gagal mendapatkan buku: ", error);
   //   } finally {
   //     isLoading.value = false;
   //   }
-  openPopup.value = true;
+  successBorrowPopup.value = true;
 };
 
 const onClosePopup = () => {
-  openPopup.value = false;
+  successBorrowPopup.value = false;
   refresh();
 };
 </script>
@@ -91,7 +99,19 @@ const onClosePopup = () => {
 
       <LazyLoading v-if="isLoading" />
 
-      <PopupModal v-model:open="openPopup">
+      <PopupModal v-model:open="showLoginPopup">
+        <template #content>
+          <div class="sucess-borrowing">
+            <img src="/illustration/kartun-melambai.svg" alt="sukses" />
+            <div class="message">
+              <p>Masuk/Daftar Akun untuk Meminjam Buku</p>
+            </div>
+            <ButtonPrimary label="Masuk" @click="router.push('/masuk')" />
+          </div>
+        </template>
+      </PopupModal>
+
+      <PopupModal v-model:open="successBorrowPopup">
         <template #content>
           <div class="sucess-borrowing">
             <img src="/illustration/kartun-melambai.svg" alt="sukses" />

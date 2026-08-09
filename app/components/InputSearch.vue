@@ -12,7 +12,7 @@ const onInput = (event) => {
 </script>
 
 <template>
-  <div class="search-bar">
+  <label class="search-bar">
     <input
       type="text"
       class="form-control"
@@ -20,7 +20,7 @@ const onInput = (event) => {
       :value="modelValue"
       @input="onInput"
     />
-  </div>
+  </label>
 </template>
 
 <style lang="scss" scoped>

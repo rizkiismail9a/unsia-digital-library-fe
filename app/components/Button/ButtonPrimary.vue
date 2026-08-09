@@ -1,11 +1,17 @@
 <script setup>
 defineProps({
   label: { type: String, default: "" },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <template>
-  <button class="btn btn-primary">{{ label }}</button>
+  <button :disabled="disabled" :class="['btn btn-primary', { disabled }]">
+    {{ label }}
+  </button>
 </template>
 
 <style lang="scss" scoped>
@@ -20,6 +26,11 @@ defineProps({
   cursor: pointer;
   border: none;
   transition: opacity 0.2s;
+  height: 46px;
+
+  &.disabled {
+    background-color: #9ca3af;
+  }
 }
 
 .btn-primary {

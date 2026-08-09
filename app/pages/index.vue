@@ -101,7 +101,6 @@ getStatistics();
 
     .loading {
       height: 112px;
-      width: 400px;
       border-radius: 10px;
     }
   }

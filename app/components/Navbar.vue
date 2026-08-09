@@ -1,6 +1,8 @@
 <script setup>
 import { PhBook, PhList } from "@phosphor-icons/vue";
 
+const auth = useAuth();
+
 const showSidebar = ref(false);
 </script>
 
@@ -14,8 +16,10 @@ const showSidebar = ref(false);
       <nav>
         <NuxtLink to="/" id="nav-home" class="active">Home</NuxtLink>
         <NuxtLink to="/katalog-buku" id="nav-books">Katalog Buku</NuxtLink>
-        <NuxtLink to="/profil" id="nav-profile">Profil</NuxtLink>
-        <NuxtLink to="/masuk" id="nav-auth">Masuk</NuxtLink>
+        <NuxtLink v-if="auth.data.value" to="/profil" id="nav-profile"
+          >Profil</NuxtLink
+        >
+        <NuxtLink v-else to="/masuk" id="nav-auth">Masuk</NuxtLink>
       </nav>
 
       <PhList
@@ -30,8 +34,10 @@ const showSidebar = ref(false);
       <div class="menu">
         <NuxtLink to="/" id="nav-home" class="active">Home</NuxtLink>
         <NuxtLink to="/katalog-buku" id="nav-books">Katalog Buku</NuxtLink>
-        <NuxtLink to="/profil" id="nav-profile">Profil</NuxtLink>
-        <NuxtLink to="/masuk" id="nav-auth">Masuk</NuxtLink>
+        <NuxtLink v-if="auth.data.value" to="/profil" id="nav-profile"
+          >Profil</NuxtLink
+        >
+        <NuxtLink v-else to="/masuk" id="nav-auth">Masuk</NuxtLink>
       </div>
     </div>
   </header>
