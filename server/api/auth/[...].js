@@ -14,7 +14,7 @@ const login = async (email, password) => {
   if (!email || !password) return false;
 
   try {
-    const data = await $fetch("/api/pwa/login", {
+    const data = await $fetch("/api/auth/login", {
       baseURL: config.public.apiBaseUrl,
       method: "POST",
       body: {

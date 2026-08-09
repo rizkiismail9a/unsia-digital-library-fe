@@ -11,6 +11,28 @@ export default defineNuxtConfig({
     },
   ],
 
+  app: {
+    head: {
+      meta: [
+        { charset: "utf-8" },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1.0",
+        },
+
+        { name: "format-detection", content: "telephone=no" },
+      ],
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+          media: "print",
+          onload: "this.media='all'",
+        },
+      ],
+    },
+  },
+
   runtimeConfig: {
     env: "",
     keySecret: "",

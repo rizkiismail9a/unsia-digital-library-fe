@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+import Navbar from "~/components/Navbar.vue";
+</script>
 
 <template>
   <Html lang="id">
+    <Navbar />
     <main>
       <div id="DigitalLibrary">
         <slot />
@@ -10,28 +13,34 @@
   </Html>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-main {
-  background-color: rgb(212, 212, 212);
-
-  #DigitalLibrary {
-    min-height: 100vh;
-    background: white;
-    margin: auto;
-  }
-}
-
-body {
+:root {
   --sb-track-color: #e8e8e8;
   --sb-thumb-color: #007c80;
   --sb-size: 2px;
+  --clr-light-green: #8cc25e;
+  --clr-green: #4dae72;
+  --clr-teal: #007c80;
+  --clr-dark-teal: #1a6272;
+  --clr-navy: #2f4858;
+  --clr-bg: #f8faf9;
+  --clr-card: #ffffff;
+  --clr-text: #2f4858;
+  --clr-muted: #6c7a89;
+  --clr-border: #e2e8f0;
+}
+
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
 }
 
 body::-webkit-scrollbar {
