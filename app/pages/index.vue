@@ -1,5 +1,5 @@
 <script setup>
-const isLoading = ref(false);
+const isLoading = ref(true);
 const booksAmount = ref(0);
 const memberAmount = ref(0);
 const bookStocks = ref(0);

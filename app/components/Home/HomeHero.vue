@@ -4,7 +4,7 @@ const router = useRouter();
 
 <template>
   <section class="hero">
-    <h1>Selamat Datang di PustakaKita!</h1>
+    <h1>Selamat Datang di HappyLibrary!</h1>
     <p>
       Temukan petualangan baru, wawasan segar, dan kisah menginspirasi. Mari
       luangkan waktu sejenak untuk membaca hari ini.

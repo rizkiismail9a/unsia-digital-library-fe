@@ -12,9 +12,9 @@ defineProps({
 
 <template>
   <section class="card chart-section">
-    <div>
+    <div class="copy">
       <h3>Ringkasan Aktivitas Peminjaman</h3>
-      <p style="color: var(--clr-muted); font-size: 0.9rem; margin-top: 0.4rem">
+      <p>
         Pantau perbandingan antara buku yang sedang aktif dipinjam dan yang
         sudah dikembalikan oleh anggota perpustakaan.
       </p>
@@ -34,17 +34,34 @@ defineProps({
   padding: 1.5rem;
 
   &.chart-section {
-    display: grid;
-    grid-template-columns: 1fr 300px;
+    display: flex;
     gap: 1.5rem;
     align-items: center;
   }
 
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+
+    p {
+      color: var(--clr-muted);
+      font-size: 0.9rem;
+    }
+  }
+
   .chart-container {
     position: relative;
-    height: 250px;
-    display: flex;
-    justify-content: center;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-section {
+    flex-direction: column;
   }
 }
 </style>
