@@ -1,4 +1,6 @@
 <script setup>
+const router = useRouter();
+
 const searchQuery = ref("");
 const isLoading = ref(true);
 const books = ref([]);
@@ -25,6 +27,10 @@ const getBooksList = async () => {
   }
 };
 
+const openBookDetail = (id) => {
+  router.push(`/katalog-buku/${id}`);
+};
+
 getBooksList();
 </script>
 
@@ -40,14 +46,15 @@ getBooksList();
           v-for="book in filteredBooks"
           :key="book._id"
           class="card book-card"
+          @click="openBookDetail(book._id)"
         >
           <div
-            class="book-cover"
+            class="book-cover truncate"
             style="background-color: var(--clr-dark-teal)"
           >
             {{ book.title }}
           </div>
-          <h2 class="book-title">{{ book.title }}</h2>
+          <h2 class="book-title truncate">{{ book.title }}</h2>
           <p class="book-author">{{ book.author }}</p>
           <p class="book-author">{{ book.genre }}</p>
         </div>
@@ -111,6 +118,8 @@ getBooksList();
         text-align: center;
         padding: 1rem;
         text-transform: capitalize;
+        line-clamp: 1;
+        -webkit-line-clamp: 1;
       }
 
       .book-title {
@@ -118,6 +127,8 @@ getBooksList();
         font-weight: 600;
         margin-bottom: 0.2rem;
         text-transform: capitalize;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
       }
 
       .book-author {

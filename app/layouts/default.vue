@@ -5,6 +5,7 @@ import Navbar from "~/components/Navbar.vue";
 <template>
   <Html lang="id">
     <Navbar />
+    <Toast />
     <main>
       <div id="DigitalLibrary">
         <slot />
@@ -55,6 +56,14 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 3px;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  align-self: stretch;
 }
 
 .shimmer-loading {
