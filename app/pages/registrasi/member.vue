@@ -5,6 +5,10 @@ import InputText from "~/components/Form/InputText.vue";
 const router = useRouter();
 const { showToast } = useToast();
 
+definePageMeta({
+  middleware: "sidebase-auth",
+});
+
 const nim = ref("");
 const prodi = ref("");
 const validatorMessage = ref("");
@@ -27,7 +31,7 @@ const createMembership = async () => {
       method: "POST",
       body: {
         nim: nim.value,
-        phone: phone.value,
+        phone: phone.value.replace(/[^0-9]/, ""),
         prodi: prodi.value,
       },
     });

@@ -98,11 +98,12 @@ const onUpdateValue = () => {
         "
       >
         Belum punya akun?
-        <a
+        <NuxtLink
+          to="/registrasi"
           style="color: var(--clr-teal); cursor: pointer"
-          onclick="alert('Form Registrasi')"
-          >Daftar Sekarang</a
         >
+          Daftar Sekarang
+        </NuxtLink>
       </p>
     </div>
   </div>

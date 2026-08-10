@@ -2,7 +2,6 @@
 import { PhSignOut } from "@phosphor-icons/vue";
 
 const auth = useAuth();
-const route = useRoute();
 const { fetchUser, authedUser, membershipData, isMember, getMembershipStatus } =
   useCurrentUser();
 
