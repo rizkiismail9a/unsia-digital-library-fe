@@ -29,6 +29,10 @@ if (error.value) {
   });
 }
 
+if (book.value && book.value.deletedAt !== null) {
+  router.replace("/katalog-buku");
+}
+
 const borrowBooks = async () => {
   if (!auth.value) {
     showLoginPopup.value = true;

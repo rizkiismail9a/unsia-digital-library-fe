@@ -1,6 +1,10 @@
 <script setup>
 defineProps({
   modelValue: { type: String, default: "" },
+  placeholder: {
+    type: String,
+    default: "Cari judul buku, penulis, atau topik...",
+  },
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -16,7 +20,7 @@ const onInput = (event) => {
     <input
       type="text"
       class="form-control"
-      placeholder="Cari judul buku, penulis, atau topik..."
+      :placeholder="placeholder"
       :value="modelValue"
       @input="onInput"
     />

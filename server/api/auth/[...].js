@@ -47,6 +47,7 @@ export default NuxtAuthHandler({
             accessToken: data.token,
             id: data.user._id,
             email: data.user.email,
+            role: data.user.role,
           };
         }
 

@@ -10,7 +10,7 @@ const showSidebar = ref(false);
   <header>
     <div class="nav-container">
       <div class="logo">
-        <PhBook size="24" colro="--clr-light" weight="fill" />
+        <PhBook size="24" colro="#2f4858" weight="fill" />
         HappyLibrary
       </div>
       <nav>
@@ -24,7 +24,7 @@ const showSidebar = ref(false);
 
       <PhList
         size="24"
-        colro="--clr-light"
+        color="#2f4858"
         class="sidebar-btn"
         @click="showSidebar = true"
       />

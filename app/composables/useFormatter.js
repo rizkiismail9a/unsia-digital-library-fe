@@ -5,6 +5,7 @@ export const useFormatter = () => {
    * @returns
    */
   const dateFormatterLong = (date) => {
+    if (!date) return "No Date";
     const fullDate = new Date(date).toLocaleDateString("id-ID", {
       year: "numeric",
       month: "long",
