@@ -77,6 +77,11 @@ const onClosePopup = () => {
   refresh();
 };
 
+const onLogin = () => {
+  showLoginPopup.value = false;
+  router.push(`/masuk?callbackUrl=/katalog-buku/${route.params.id}`);
+};
+
 getMembershipStatus();
 </script>
 
@@ -125,7 +130,7 @@ getMembershipStatus();
             <div class="message">
               <p>Masuk/Daftar Akun untuk Meminjam Buku</p>
             </div>
-            <ButtonPrimary label="Masuk" @click="router.push('/masuk')" />
+            <ButtonPrimary label="Masuk" @click="onLogin" />
           </div>
         </template>
       </PopupModal>

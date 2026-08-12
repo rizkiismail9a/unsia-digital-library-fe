@@ -6,7 +6,7 @@ const route = useRoute();
 const { fetchUser, authedUser } = useCurrentUser();
 
 definePageMeta({
-  middleware: "admin-only",
+  middleware: ["sidebase-auth", "admin-only"],
 });
 
 const showSidebar = ref(false);

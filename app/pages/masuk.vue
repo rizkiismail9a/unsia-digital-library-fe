@@ -38,6 +38,8 @@ const loginWithPassword = async () => {
     } else {
       if (route.query.callbackUrl) {
         router.push(route.query.callbackUrl);
+
+        return;
       }
       router.push("/profil");
     }

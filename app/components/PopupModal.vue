@@ -4,7 +4,7 @@ const open = defineModel("open", { type: Boolean, default: false });
 const emits = defineEmits(["close"]);
 
 const closeModal = () => {
-  emits("close");
+  open.value = false;
 };
 </script>
 
